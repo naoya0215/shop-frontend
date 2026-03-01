@@ -34,7 +34,8 @@ const ProductsPage = () => {
                 params.append('price_range', priceRange.join(','));
             }
 
-            const response = await fetch(`http://localhost:8001/api/products?${params}`);
+            // const response = await fetch(`http://localhost:8001/api/products?${params}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products?${params}`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -61,7 +62,7 @@ const ProductsPage = () => {
             return imagePath;
         }
         
-        return `http://localhost:8000/api/images/${imagePath}`;
+        return `${process.env.NEXT_PUBLIC_API_URL}/images/${imagePath}`;
     };
 
     const handlePriceFilter = (range: string) => {
